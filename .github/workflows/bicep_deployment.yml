@@ -1,0 +1,21 @@
+on:
+  push: 
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+name: Bicep deployment
+
+jobs:
+  deploy:
+    name: Deploy bicep files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login to azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
