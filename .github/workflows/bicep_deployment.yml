@@ -6,10 +6,13 @@ on:
 
 name: Bicep deployment
 
+
 jobs:
   deploy:
     name: Deploy bicep files
     runs-on: ubuntu-latest
+    env:
+      AZURE_RESOURCEGROUP_NAME: micro-app
     
     steps:
       - name: Checkout
@@ -19,3 +22,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy arm template
+        with:
+          resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+          template: ./main.bicep
+          parameters: test_param=test

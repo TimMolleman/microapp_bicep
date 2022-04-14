@@ -105,38 +105,6 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
             name: 'COSMOS_APP_DB'
             value: 'app-db'
           }
-          {
-            name: 'COSMOS_DB_ENDPOINT'
-            value: secret
-          }
-          {
-            name: 'servicebusforapp_SERVICEBUS'
-            value: secret
-          }
-          {
-            name: 'AZURE_SUBSCRIPTION_ID'
-            value: secret
-          }
-          {
-            name: 'AZURE_CLIENT_ID'
-            value: secret
-          }
-          {
-            name: 'AZURE_CLIENT_SECRET'
-            value: secret
-          }
-          {
-            name: 'ACR_USERNAME'
-            value: secret
-          }
-          {
-            name: 'ACR_PASSWORD'
-            value: secret
-          }
-          {
-            name: 'ACR_SERVER'
-            value: secret
-          }
         ]
       }
       httpsOnly: true
