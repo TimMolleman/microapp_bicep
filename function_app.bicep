@@ -105,6 +105,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
             name: 'COSMOS_APP_DB'
             value: 'app-db'
           }
+          
         ]
       }
       httpsOnly: true
