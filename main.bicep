@@ -5,6 +5,8 @@ param deploy_location string = deployment().location
 param cosmos_db_endpoint string
 param servicebus_endpoint string
 param azure_subscription_id string
+param azure_client_id string
+
 
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
@@ -34,5 +36,6 @@ module functionAppDeploy 'function_app.bicep' = {
     cosmos_db_endpoint: cosmos_db_endpoint
     servicebus_endpoint: servicebus_endpoint
     azure_subscription_id: azure_subscription_id
+    azure_client_id: azure_client_id
   }
 }

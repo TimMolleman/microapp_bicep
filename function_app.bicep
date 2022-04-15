@@ -5,6 +5,8 @@ param resource_location string = resourceGroup().location
 param cosmos_db_endpoint string
 param servicebus_endpoint string
 param azure_subscription_id string
+param azure_client_id string
+
 
 // Storage account for Azure Function App
 @allowed([
@@ -118,6 +120,10 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           {
             name: 'AZURE_SUBSCRIPTION_ID'
             value: azure_subscription_id
+          }
+          {
+            name: 'AZURE_CLIENT_ID'
+            value: azure_client_id
           }
         ]
       }
