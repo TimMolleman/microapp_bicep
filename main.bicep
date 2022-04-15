@@ -2,17 +2,34 @@ targetScope = 'subscription'
 
 // parameters
 param deploy_location string = deployment().location
+
+// Secure params
+@secure()
 param cosmos_db_endpoint string
+
+@secure()
 param servicebus_endpoint string
+
+@secure()
 param azure_subscription_id string
+
+@secure()
 param azure_client_id string
+
+@secure()
 param azure_client_secret string
+
+@secure()
 param azure_tenant_id string
+
+@secure()
 param acr_username string
+
+@secure()
 param acr_password string
+
+@secure()
 param acr_server string
-
-
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: 'micro-app'

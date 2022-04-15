@@ -1,17 +1,33 @@
 // Global parameters
 param resource_location string = resourceGroup().location
 
-// Secret params
+// Secure params
+@secure()
 param cosmos_db_endpoint string
-param servicebus_endpoint string
-param azure_subscription_id string
-param azure_client_id string
-param azure_client_secret string
-param azure_tenant_id string
-param acr_username string
-param acr_password string
-param acr_server string
 
+@secure()
+param servicebus_endpoint string
+
+@secure()
+param azure_subscription_id string
+
+@secure()
+param azure_client_id string
+
+@secure()
+param azure_client_secret string
+
+@secure()
+param azure_tenant_id string
+
+@secure()
+param acr_username string
+
+@secure()
+param acr_password string
+
+@secure()
+param acr_server string
 
 // Storage account for Azure Function App
 @allowed([
