@@ -4,6 +4,8 @@ targetScope = 'subscription'
 param deploy_location string = deployment().location
 param cosmos_db_endpoint string
 param servicebus_endpoint string
+param azure_subscription_id string
+
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: 'micro-app'
@@ -30,6 +32,7 @@ module functionAppDeploy 'function_app.bicep' = {
   scope: rg
   params: {
     cosmos_db_endpoint: cosmos_db_endpoint
-    servicebus_endpoint: service_bus_endpoint
+    servicebus_endpoint: servicebus_endpoint
+    azure_subscription_id: azure_subscription_id
   }
 }
