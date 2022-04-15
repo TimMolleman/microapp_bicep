@@ -30,3 +30,4 @@ jobs:
           region: northeurope
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           template: ./main.bicep
+          failOnStdErr: false
