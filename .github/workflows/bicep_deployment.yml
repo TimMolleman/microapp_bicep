@@ -26,8 +26,8 @@ jobs:
       - name: Deploy arm template
         uses: azure/arm-deploy@v1
         with:
+          scope: subscription
           region: northeurope
-          resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           template: ./main.bicep
           parameters: test_param=test
