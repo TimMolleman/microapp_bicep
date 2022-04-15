@@ -2,6 +2,7 @@ targetScope = 'subscription'
 
 // parameters
 param deploy_location string = deployment().location
+param cosmos_db_endpoint string
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: 'micro-app'
@@ -26,4 +27,7 @@ module containerRegistryDeploy 'container_registry.bicep' = {
 module functionAppDeploy 'function_app.bicep' = {
   name: 'functionAppDeploy'
   scope: rg
+  params: {
+    cosmos_db_endpoint: cosmos_db_endpoint
+  }
 }

@@ -31,3 +31,4 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           template: ./main.bicep
           failOnStdErr: false
+          parameters:  cosmos_db_endpoint=${{ secrets.COSMOS_DB_ENDPOINT }}
