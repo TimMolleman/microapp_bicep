@@ -49,3 +49,4 @@ module functionAppDeploy 'function_app.bicep' = {
     acr_server: acr_server
   }
 }
+
