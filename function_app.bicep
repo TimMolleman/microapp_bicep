@@ -6,6 +6,9 @@ param resource_location string = resourceGroup().location
 param cosmos_db_endpoint string
 
 @secure()
+param cosmos_db_key string
+
+@secure()
 param servicebus_endpoint string
 
 @secure()
@@ -133,6 +136,10 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           {
             name: 'COSMOS_DB_ENDPOINT'
             value: cosmos_db_endpoint
+          }
+          {
+            name: 'COSMOS_DB_KEY'
+            value: cosmos_db_key
           }
           {
             name: 'servicebusforapp_SERVICEBUS'

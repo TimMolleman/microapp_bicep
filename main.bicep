@@ -8,6 +8,9 @@ param deploy_location string = deployment().location
 param cosmos_db_endpoint string
 
 @secure()
+param cosmos_db_key string
+
+@secure()
 param servicebus_endpoint string
 
 @secure()
@@ -56,6 +59,7 @@ module functionAppDeploy 'function_app.bicep' = {
   scope: rg
   params: {
     cosmos_db_endpoint: cosmos_db_endpoint
+    cosmos_db_key: cosmos_db_key
     servicebus_endpoint: servicebus_endpoint
     azure_subscription_id: azure_subscription_id
     azure_client_id: azure_client_id
