@@ -32,11 +32,11 @@ jobs:
           template: ./main.bicep
           failOnStdErr: false
           parameters: cosmos_db_endpoint=${{ secrets.COSMOS_DB_ENDPOINT }}
-                      servicebus_endpoint    =   ${{ secrets.SERVICEBUS_ENDPOINT }}
-                      azure_subscription_id  =   ${{ secrets.SUBSCRIPTION_ID }}
-                      azure_client_id        =   ${{ secrets.AZURE_CLIENT_ID }}
-                      azure_client_secret    =   ${{ secrets.AZURE_CLIENT_SECRET }}
-                      azure_tenant_id        =   ${{ secrets.AZURE_TENANT_ID }}
-                      acr_username           =   ${{ secrets.ACR_USERNAME }}
-                      acr_password           =   ${{ secrets.ACR_PASSWORD }}
-                      acr_server             =   ${{ secrets.ACR_SERVER }}
+                      servicebus_endpoint=${{ secrets.SERVICEBUS_ENDPOINT }}
+                      azure_subscription_id=${{ secrets.SUBSCRIPTION_ID }}
+                      azure_client_id=${{ secrets.AZURE_CLIENT_ID }}
+                      azure_client_secret=${{ secrets.AZURE_CLIENT_SECRET }}
+                      azure_tenant_id=${{ secrets.AZURE_TENANT_ID }}
+                      acr_username=${{ secrets.ACR_USERNAME }}
+                      acr_password=${{ secrets.ACR_PASSWORD }}
+                      acr_server=${{ secrets.ACR_SERVER }}
