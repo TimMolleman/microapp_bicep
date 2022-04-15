@@ -90,7 +90,7 @@ resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
 
 // Functionapp configuration
 resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
-  name: 'spawner2'
+  name: 'spawner'
   location: resource_location
   kind: 'functionapp'
   properties: {
