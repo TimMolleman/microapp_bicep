@@ -30,4 +30,3 @@ jobs:
           region: northeurope
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           template: ./main.bicep
-          parameters: test_param=test2
