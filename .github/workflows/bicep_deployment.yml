@@ -32,3 +32,4 @@ jobs:
           template: ./main.bicep
           failOnStdErr: false
           parameters:  cosmos_db_endpoint=${{ secrets.COSMOS_DB_ENDPOINT }}
+                       servicebus_endpoint=${{ secrets.SERVICEBUS_ENDPOINT }}

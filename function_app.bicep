@@ -3,6 +3,7 @@ param resource_location string = resourceGroup().location
 
 // Secret params
 param cosmos_db_endpoint string
+param servicebus_endpoint string
 
 // Storage account for Azure Function App
 @allowed([
@@ -109,6 +110,35 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
             name: 'COSMOS_DB_ENDPOINT'
             value: cosmos_db_endpoint
           }
+          {
+            name: 'servicebusforapp_SERVICEBUS'
+            value: servicebus_endpoint
+          }
+          {
+            name: 'AZURE_SUBSCRIPTION_ID'
+            value: secret
+          }
+          {
+            name: 'AZURE_CLIENT_ID'
+            value: secret
+          }
+          {
+            name: 'AZURE_CLIENT_SECRET'
+            value: secret
+          }
+          {
+            name: 'ACR_USERNAME'
+            value: secret
+          }
+          {
+            name: 'ACR_PASSWORD'
+            value: secret
+          }
+          {
+            name: 'ACR_SERVER'
+            value: secret
+          }
+
         ]
       }
       httpsOnly: true
