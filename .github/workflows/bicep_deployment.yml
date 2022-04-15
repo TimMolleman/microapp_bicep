@@ -31,8 +31,8 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           template: ./main.bicep
           failOnStdErr: false
-          parameters:  cosmos_db_endpoint=${{ secrets.COSMOS_DB_ENDPOINT }}
-                       servicebus_endpoint=${{ secrets.SERVICEBUS_ENDPOINT }}
-                       azure_subscription_id=${{ secrets.SUBSCRIPTION_ID }}
-                       azure_client_id=${{ secrets.AZURE_CLIENT_ID }}
-
+          parameters:  cosmos_db_endpoint     =   ${{ secrets.COSMOS_DB_ENDPOINT }}
+                       servicebus_endpoint    =   ${{ secrets.SERVICEBUS_ENDPOINT }}
+                       azure_subscription_id  =   ${{ secrets.SUBSCRIPTION_ID }}
+                       azure_client_id        =   ${{ secrets.AZURE_CLIENT_ID }}
+                       

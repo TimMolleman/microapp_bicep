@@ -6,6 +6,11 @@ param cosmos_db_endpoint string
 param servicebus_endpoint string
 param azure_subscription_id string
 param azure_client_id string
+param azure_client_secret string
+param azure_tenant_id string
+param acr_username string
+param acr_password string
+param acr_server string
 
 
 
@@ -37,5 +42,10 @@ module functionAppDeploy 'function_app.bicep' = {
     servicebus_endpoint: servicebus_endpoint
     azure_subscription_id: azure_subscription_id
     azure_client_id: azure_client_id
+    azure_client_secret: azure_client_secret
+    azure_tenant_id: azure_tenant_id
+    acr_username: acr_username
+    acr_password: acr_password
+    acr_server: acr_server
   }
 }

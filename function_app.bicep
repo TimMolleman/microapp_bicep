@@ -6,6 +6,11 @@ param cosmos_db_endpoint string
 param servicebus_endpoint string
 param azure_subscription_id string
 param azure_client_id string
+param azure_client_secret string
+param azure_tenant_id string
+param acr_username string
+param acr_password string
+param acr_server string
 
 
 // Storage account for Azure Function App
@@ -125,6 +130,27 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
             name: 'AZURE_CLIENT_ID'
             value: azure_client_id
           }
+          {
+            name: 'AZURE_CLIENT_SECRET'
+            value: azure_client_secret
+          }
+          {
+            name: 'AZURE_TENANT_ID'
+            value: azure_tenant_id
+          }
+          {
+            name: 'ACR_USERNAME'
+            value: acr_username
+          }
+          {
+            name: 'ACR_PASSWORD'
+            value: acr_password
+          }
+          {
+            name: 'ACR_SERVER'
+            value: acr_server
+          }
+
         ]
       }
       httpsOnly: true
