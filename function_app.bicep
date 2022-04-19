@@ -47,20 +47,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   }
   kind: 'Storage'
   properties: {
-    supportsHttpsTrafficOnly: true
-    encryption: {
-      services: {
-        file: {
-          keyType: 'Account'
-          enabled: true
-        }
-        blob: {
-          keyType: 'Account'
-          enabled: true
-        }
-      }
-      keySource: 'Microsoft.Storage'
-    }
+    accessTier: 'Hot'
   }
 }
 
@@ -178,6 +165,5 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
 
         ]
       }
-      httpsOnly: true
   }
 }
