@@ -45,7 +45,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   sku: {
     name: sku
   }
-  kind: 'StorageV2'
+  kind: 'Storage'
   properties: {
     accessTier: 'Cool'
     supportsHttpsTrafficOnly: true
