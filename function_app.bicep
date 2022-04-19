@@ -81,7 +81,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: 'FunctionPlan'
   location: resource_location
-  kind: 'functionapp'
+  kind: 'functionapp,linux'
   sku: {
     name: 'Y1'
   }
@@ -92,7 +92,7 @@ resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
 resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
   name: 'spawner'
   location: resource_location
-  kind: 'functionapp'
+  kind: 'functionapp,linux'
   properties: {
       serverFarmId: plan.id
       siteConfig: {
