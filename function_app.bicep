@@ -104,7 +104,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
             value: 'python' 
           }
           {
-            name: 'FUNCTIONS_EXTENSION_WORKTIME'
+            name: 'FUNCTIONS_EXTENSION_VERSION'
             value: '~4' 
           }
           {
