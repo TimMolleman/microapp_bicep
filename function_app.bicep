@@ -81,7 +81,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: 'FunctionPlan'
   location: resource_location
-  kind: 'functionapp,linux'
+  kind: 'linux'
   sku: {
     name: 'Y1'
   }
