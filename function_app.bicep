@@ -47,7 +47,6 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   }
   kind: 'Storage'
   properties: {
-    accessTier: 'Cool'
     supportsHttpsTrafficOnly: true
     encryption: {
       services: {
