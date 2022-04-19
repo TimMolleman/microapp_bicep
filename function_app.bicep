@@ -40,7 +40,7 @@ param acr_server string
 param sku string = 'Standard_LRS'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  name: 'spawnerstorage'
+  name: 'spawner-storage'
   location: resource_location
   sku: {
     name: sku
