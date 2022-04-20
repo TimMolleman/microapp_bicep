@@ -100,6 +100,10 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
             value: 'northeurope'
           }
           {
+            name: 'AZURE_RESOURCE_GROUP'
+            value: 'micro-app'
+          }
+          {
             name: 'FUNCTIONS_WORKER_RUNTIME'
             value: 'python' 
           }
