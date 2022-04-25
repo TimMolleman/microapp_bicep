@@ -26,7 +26,7 @@ stages:
         inlineScript: 'az bicep build --file main.bicep'
     
     - task: PublishBuildArtifacts@1 
-      displayName: 'Publish artifact in pipeline' 
+      displayName: 'Publish bicep artifact in pipeline' 
       inputs: 
         PathtoPublish: '$(Build.SourcesDirectory)/main.json'  
         ArtifactName: 'finishedBicepTemplate'  
@@ -53,9 +53,11 @@ stages:
                 --template-file $(Build.SourcesDirectory)/main.bicep `
                 -l northeurope `
                 --no-prompt -c `
-                --parameters $(Build.SourcesDirectory)/main.parameters.json `
                 --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) `
                              azure_client_id=$(AZURE_CLIENT_ID) `
                              azure_client_secret=$(AZURE_CLIENT_SECRET) `
                              azure_tenant_id=$(AZURE_TENANT_ID) `
-                             resource_group=$(RESOURCE_GROUP)
+                             resource_group=$(RESOURCE_GROUP) `
+                             deploy_location=northeurope `
+                             keyvault_name=microappvault `
+                             acr_name=microcontainerapp
