@@ -46,11 +46,11 @@ stages:
             displayName: 'deploy bicep template'
             inputs:
               azureSubscription: $(azureSubscription) 
-              scriptType: 'pscore'
+              scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
-                az deployment sub create  `
-                --template-file $(Build.SourcesDirectory)/main.bicep `
-                -l northeurope `
-                --no-prompt -c `
+                az deployment sub create  \
+                --template-file $(Build.SourcesDirectory)/main.bicep \
+                -l northeurope \
+                --no-prompt -c \
                 --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) azure_client_id=$(AZURE_CLIENT_ID) azure_client_secret=$(AZURE_CLIENT_SECRET) azure_tenant_id=$(AZURE_TENANT_ID) resource_group=$(RESOURCE_GROUP) deploy_location=northeurope keyvault_name=microappvault acr_name=microcontainerapp
