@@ -50,7 +50,7 @@ stages:
               scriptLocation: 'inlineScript'
               inlineScript: |
                 az deployment sub create  `
-                --template-file $(Build.SourcesDirectory)/main.bicep 
+                --template-file $(Build.SourcesDirectory)/main.bicep `
                 -l northeurope `
                 --no-prompt -c `
                 --parameters $(Build.SourcesDirectory)/main.parameters.json `
