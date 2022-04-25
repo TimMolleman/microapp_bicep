@@ -6,7 +6,7 @@ trigger:
 pool:
   name: local_pool
   demands:
-    - agent.os -equal Darwin
+    - agent.os -equals Darwin
 
 stages:
 - stage: Build
