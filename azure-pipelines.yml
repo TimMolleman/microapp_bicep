@@ -36,6 +36,7 @@ stages:
   jobs:
   - deployment: biceptoAzure
     displayName: 'Deploy bicep to Azure'
+    environment: 'prod'
     strategy:
       runOnce:
         deploy:
