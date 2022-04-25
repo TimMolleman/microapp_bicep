@@ -3,18 +3,6 @@ param resource_location string = resourceGroup().location
 
 // Secure params
 @secure()
-param cosmos_db_endpoint string
-
-@secure()
-param cosmos_db_key string
-
-@secure()
-param servicebus_endpoint string
-
-@secure()
-param azure_subscription_id string
-
-@secure()
 param azure_client_id string
 
 @secure()
@@ -23,14 +11,12 @@ param azure_client_secret string
 @secure()
 param azure_tenant_id string
 
-@secure()
-param acr_username string
-
-@secure()
-param acr_password string
-
-@secure()
-param acr_server string
+// References to keyvault and the azure container registry name
+param acr_name string
+param secret_ref_servicebus_endpoint string
+param secret_ref_acr_key string
+param secret_ref_cosmos_db_key string 
+param secret_ref_cosmos_db_endpoint string
 
 // Storage account for Azure Function App
 @allowed([
@@ -113,7 +99,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           }
           {
             name: 'IMAGE_NAME'
-            value: 'appregistry.azurecr.io/worker:latest'
+            value: '${acr_name}.azurecr.io/worker:latest'
           }
           {
             name: 'BASE_NAME_CONTAINER'
@@ -125,19 +111,19 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           }
           {
             name: 'COSMOS_DB_ENDPOINT'
-            value: cosmos_db_endpoint
+            value: secret_ref_cosmos_db_endpoint
           }
           {
             name: 'COSMOS_DB_KEY'
-            value: cosmos_db_key
+            value: secret_ref_cosmos_db_key
           }
           {
             name: 'servicebusforapp_SERVICEBUS'
-            value: servicebus_endpoint
+            value: secret_ref_servicebus_endpoint
           }
           {
             name: 'AZURE_SUBSCRIPTION_ID'
-            value: azure_subscription_id
+            value: subscription().id
           }
           {
             name: 'AZURE_CLIENT_ID'
@@ -153,17 +139,16 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           }
           {
             name: 'ACR_USERNAME'
-            value: acr_username
+            value: acr_name
           }
           {
             name: 'ACR_PASSWORD'
-            value: acr_password
+            value: secret_ref_acr_key
           }
           {
             name: 'ACR_SERVER'
-            value: acr_server
+            value: '${acr_name}.azurecr.io'
           }
-
         ]
       }
       httpsOnly: true

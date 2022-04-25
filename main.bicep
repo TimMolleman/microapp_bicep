@@ -1,21 +1,12 @@
 targetScope = 'subscription'
 
-// parameters
-param deploy_location string = deployment().location
+// Parameters
+param deploy_location string
+param resource_group string
+param keyvault_name string
+param acr_name string
 
-// Secure params
-@secure()
-param cosmos_db_endpoint string
-
-@secure()
-param cosmos_db_key string
-
-@secure()
-param servicebus_endpoint string
-
-@secure()
-param azure_subscription_id string
-
+// Secret parameters
 @secure()
 param azure_client_id string
 
@@ -26,48 +17,70 @@ param azure_client_secret string
 param azure_tenant_id string
 
 @secure()
-param acr_username string
-
-@secure()
-param acr_password string
-
-@secure()
-param acr_server string
+param contributor_object_id string
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: 'micro-app'
+  name: resource_group
   location: deploy_location
 }
 
-module serviceBusDeploy 'servicebusdeploy.bicep' = {
-  name: 'serviceBusDeploy'
-  scope: rg
-}
-
-module cosmosDbDeploy 'cosmos_db.bicep' = {
-  name: 'cosmosDbDeploy'
-  scope: rg
-}
-
-module containerRegistryDeploy 'container_registry.bicep' = {
-  name: 'containerRegistryDeploy'
-  scope: rg
-}
-
-module functionAppDeploy 'function_app.bicep' = {
-  name: 'functionAppDeploy'
+module keyVaultDeploy 'modules/keyvault.bicep' = {
+  name: 'keyVaultDeploy'
   scope: rg
   params: {
-    cosmos_db_endpoint: cosmos_db_endpoint
-    cosmos_db_key: cosmos_db_key
-    servicebus_endpoint: servicebus_endpoint
-    azure_subscription_id: azure_subscription_id
-    azure_client_id: azure_client_id
-    azure_client_secret: azure_client_secret
-    azure_tenant_id: azure_tenant_id
-    acr_username: acr_username
-    acr_password: acr_password
-    acr_server: acr_server
+    keyvault_name: keyvault_name
+    contributor_object_id: contributor_object_id
   }
 }
 
+module serviceBusDeploy 'modules/servicebusdeploy.bicep' = {
+  name: 'serviceBusDeploy'
+  scope: rg
+  params: {
+    keyvault_name: keyvault_name
+  }
+  dependsOn: [
+    keyVaultDeploy
+  ]
+}
+
+module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
+  name: 'cosmosDbDeploy'
+  scope: rg
+  params: {
+    keyvault_name: keyvault_name
+  }
+  dependsOn: [
+    keyVaultDeploy
+  ]
+}
+
+module containerRegistryDeploy 'modules/container_registry.bicep' = {
+  name: 'containerRegistryDeploy'
+  scope: rg
+  params: {
+    acr_name: acr_name
+    keyvault_name: keyvault_name
+  }
+  dependsOn: [
+    keyVaultDeploy
+  ]
+}
+
+module functionAppDeploy 'modules/function_app.bicep' = {
+  name: 'functionAppDeploy'
+  scope: rg
+  params: {
+    secret_ref_servicebus_endpoint: serviceBusDeploy.outputs.secret_ref_servicebus_endpoint
+    secret_ref_acr_key: containerRegistryDeploy.outputs.secret_ref_acr_key
+    secret_ref_cosmos_db_key: cosmosDbDeploy.outputs.secret_ref_cosmos_db_key
+    secret_ref_cosmos_db_endpoint: cosmosDbDeploy.outputs.secret_ref_cosmos_db_endpoint
+    acr_name: acr_name
+    azure_client_id: azure_client_id
+    azure_client_secret: azure_client_secret
+    azure_tenant_id: azure_tenant_id
+  }
+  dependsOn: [
+    keyVaultDeploy
+  ]
+}
