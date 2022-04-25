@@ -1,4 +1,4 @@
-name: Deploy bicep
+name: Deploy bicep files
 
 trigger:
 - main
@@ -8,6 +8,10 @@ pool:
   demands:
     - agent.os -equals Darwin
 
+variables:
+  azureSubscription: 'build_connection'
+
+
 stages:
 - stage: Build
   jobs:
@@ -16,7 +20,7 @@ stages:
     - task: AzureCLI@2  
       displayName: 'Build bicep artifact' 
       inputs: 
-        azureSubscription: $(azureSubscription) 
+        azureSubscription: $(azureSubscription)
         scriptType: 'pscore'  
         scriptLocation: 'inlineScript'
         inlineScript: 'az bicep build --file main.bicep'
