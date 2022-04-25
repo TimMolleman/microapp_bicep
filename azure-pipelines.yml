@@ -4,7 +4,9 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: local_pool
+  demands:
+    - agent.os -equal Darwin
 
 stages:
 - stage: Build
@@ -17,5 +19,12 @@ stages:
         azureSubscription: $(azureSubscription) 
         scriptType: 'pscore'  
         scriptLocation: 'inlineScript'
-        inlineScript: 'az bicep build --file main.bicep' 
+        inlineScript: 'az bicep build --file main.bicep'
+    
+    - task: PublishBuildArtifacts@1 
+      displayName: 'Publish artifact in pipeline' 
+      inputs: 
+        PathtoPublish: '$(Build.SourcesDirectory)/main.json'  
+        ArtifactName: 'finishedBicepTemplate'  
+        publishLocation: 'Container'
         
