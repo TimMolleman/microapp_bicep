@@ -50,8 +50,9 @@ stages:
               scriptLocation: 'inlineScript'
               inlineScript: |
                 az deployment sub create  `
-                --template-file $(Build.SourcesDirectory)/main.bicep `
-                --no-prompt -c -l northeurope `
+                --template-file $(Build.SourcesDirectory)/main.bicep 
+                --location northeurope `
+                --no-prompt -c `
                 --parameters $(Build.SourcesDirectory)/main.parameters.json `
                 --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) `
                              azure_client_id=$(AZURE_CLIENT_ID) `
