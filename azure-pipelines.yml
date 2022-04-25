@@ -1,7 +1,7 @@
 name: Deploy bicep files
 
 trigger:
-- main
+- master
 
 pool:
   name: local_pool
