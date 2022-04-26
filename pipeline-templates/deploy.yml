@@ -1,16 +1,20 @@
 jobs:
-    - job: ValidateBicepCode
-      displayName: Validate Bicep code
-      steps:
-      - task: AzureCLI@2
-        name: RunPreflightValidation
-        displayName: Run preflight validation
-        inputs:
-          azureSubscription: $(AZURE_SUBSCRIPTION)
-          scriptType: 'bash'
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            az deployment sub validate \
+- deployment: biceptoAzure
+  displayName: 'Deploy bicep to Azure'
+  environment: 'prod'
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - checkout: self
+        - task: AzureCLI@2
+          displayName: 'deploy bicep template'
+          inputs:
+            azureSubscription: $(AZURE_SUBSCRIPTION) 
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              az deployment sub create  \
               --template-file $(Build.SourcesDirectory)/main.bicep \
               -l northeurope \
               --no-prompt \

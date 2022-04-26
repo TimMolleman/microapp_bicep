@@ -11,13 +11,8 @@ pool:
 stages:
 # Run linting on the bicep file, warnings are shown but this doesn't stop the pipeline. Errors do
 - stage: Lint
-  jobs: 
-  - job: LintCode
-    displayName: Lint bicep code
-    steps:
-      - script: az bicep build --file main.bicep
-        name: LintBicepCode
-        displayName: Run Bicep linter
+  jobs:
+    - template: templates/lint.yml
 
 # Run validation on the deployment subscription
 - stage: Validate
@@ -52,28 +47,5 @@ stages:
 # Lastly deploy the bicep file code to Azure
 - stage: Deploy
   jobs:
-  - deployment: biceptoAzure
-    displayName: 'Deploy bicep to Azure'
-    environment: 'prod'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - checkout: self
-          - task: AzureCLI@2
-            displayName: 'deploy bicep template'
-            inputs:
-              azureSubscription: $(AZURE_SUBSCRIPTION) 
-              scriptType: 'bash'
-              scriptLocation: 'inlineScript'
-              inlineScript: |
-                az deployment sub create  \
-                --template-file $(Build.SourcesDirectory)/main.bicep \
-                -l northeurope \
-                --no-prompt \
-                --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) \
-                             azure_client_id=$(AZURE_CLIENT_ID) \
-                             azure_client_secret=$(AZURE_CLIENT_SECRET) \
-                             azure_tenant_id=$(AZURE_TENANT_ID) \
-                             resource_group=$(RESOURCE_GROUP) \
-                --parameters @main.parameters.json
+    - template: templates/deploy.yml
+  

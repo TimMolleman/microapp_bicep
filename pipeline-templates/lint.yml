@@ -1,0 +1,7 @@
+jobs: 
+- job: LintCode
+  displayName: Lint bicep code
+  steps:
+    - script: az bicep build --file main.bicep
+      name: LintBicepCode
+      displayName: Run Bicep linter
