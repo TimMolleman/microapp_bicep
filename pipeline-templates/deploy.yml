@@ -1,7 +1,7 @@
 jobs:
 - deployment: biceptoAzure
   displayName: 'Deploy bicep to Azure'
-  environment: 'prod'
+  environment: $(DEPLOY_ENVIRONMENT)
   strategy:
     runOnce:
       deploy:

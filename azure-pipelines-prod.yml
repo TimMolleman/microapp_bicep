@@ -1,0 +1,26 @@
+name: Deploy bicep files to production (manual trigger)
+
+trigger:
+- none
+
+pool:
+  name: local_pool
+  demands:
+    - agent.os -equals Darwin
+
+stages:
+# Run linting on the bicep file, warnings are shown but this doesn't stop the pipeline. Errors do
+- stage: Lint
+  jobs:
+    - template: pipeline-templates/lint.yml
+  
+# Run what if statement
+- stage: Preview
+  jobs: 
+  - template: pipeline-templates/preview.yml
+
+# Lastly deploy the bicep file code to Azure
+- stage: Deploy
+  jobs:
+    - template: pipeline-templates/deploy.yml
+  

@@ -1,4 +1,4 @@
-name: Deploy bicep files
+name: Deploy bicep files to test on master commit
 
 trigger:
 - master
@@ -18,11 +18,6 @@ stages:
 - stage: Validate
   jobs:
     - template: pipeline-templates/validate.yml
-
-# Run what if statement
-- stage: Preview
-  jobs: 
-  - template: pipeline-templates/preview.yml
 
 # Lastly deploy the bicep file code to Azure
 - stage: Deploy
