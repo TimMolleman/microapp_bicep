@@ -44,6 +44,31 @@ stages:
                             resource_group=$(RESOURCE_GROUP) \
               --parameters @main.parameters.json
 
+# Run what if statement
+- stage: Preview
+  jobs: 
+  - job: PreviewAzureChanges
+    displayName: Preview Azure changes
+    steps:
+      - task: AzureCLI@2
+        name: RunWhatIf
+        displayName: Run what-if
+        inputs:
+          azureSubscription: $(AZURE_SUBSCRIPTION)
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az deployment sub what-if \
+               --template-file $(Build.SourcesDirectory)/main.bicep \
+              -l northeurope \
+              --no-prompt \
+              --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) \
+                            azure_client_id=$(AZURE_CLIENT_ID) \
+                            azure_client_secret=$(AZURE_CLIENT_SECRET) \
+                            azure_tenant_id=$(AZURE_TENANT_ID) \
+                            resource_group=$(RESOURCE_GROUP) \
+              --parameters @main.parameters.json
+
 # Lastly deploy the bicep file code to Azure
 - stage: Deploy
   jobs:
@@ -63,7 +88,6 @@ stages:
               scriptLocation: 'inlineScript'
               inlineScript: |
                 az deployment sub create  \
-                --name $(Build.BuildNumber) \
                 --template-file $(Build.SourcesDirectory)/main.bicep \
                 -l northeurope \
                 --no-prompt \
