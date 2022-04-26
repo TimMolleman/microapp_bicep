@@ -14,6 +14,7 @@ jobs:
             scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
+              echo "micoappvault-$(DEPLOY_ENVIRONMENT)" \
               az deployment sub create  \
               --template-file $(Build.SourcesDirectory)/main.bicep \
               -l northeurope \
@@ -23,5 +24,5 @@ jobs:
                             azure_client_secret=$(AZURE_CLIENT_SECRET) \
                             azure_tenant_id=$(AZURE_TENANT_ID) \
                             resource_group=$(RESOURCE_GROUP) \
-                            keyvault_name=microappvault-$(DEPLOY_ENVIRONMENT) \
+                            keyvault_name=microappvault$(DEPLOY_ENVIRONMENT) \
               --parameters @main.parameters.json
