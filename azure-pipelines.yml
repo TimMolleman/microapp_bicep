@@ -13,7 +13,7 @@ variables:
 
 
 stages:
-- stage: Build and publish
+- stage: build_artifact
   jobs:
   - job: Build
     steps:
@@ -25,7 +25,7 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: 'az bicep build --file main.bicep'
     
-    - task: PublishBuildArtifacts@1 
+    - task: PublishBuildArtifacts@1
       displayName: 'Publish bicep artifact in pipeline' 
       inputs: 
         PathtoPublish: '$(Build.SourcesDirectory)/main.json'  
@@ -59,6 +59,3 @@ stages:
                              azure_tenant_id=$(AZURE_TENANT_ID) \
                              resource_group=$(RESOURCE_GROUP) \
                 -- parameters @main.parameters.json
-                            #  deploy_location=northeurope \
-                            #  keyvault_name=microappvaultran \
-                            #  acr_name=microcontainerapp
