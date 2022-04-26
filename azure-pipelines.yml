@@ -8,10 +8,6 @@ pool:
   demands:
     - agent.os -equals Darwin
 
-variables:
-  azureSubscription: 'build_connection'
-
-
 stages:
 - stage: build_artifact
   jobs:
@@ -20,7 +16,7 @@ stages:
     - task: AzureCLI@2  
       displayName: 'Build bicep artifact' 
       inputs: 
-        azureSubscription: $(azureSubscription)
+        azureSubscription: $(AZURE_SUBSCRIPTION)
         scriptType: 'pscore'  
         scriptLocation: 'inlineScript'
         inlineScript: 'az bicep build --file main.bicep'
@@ -45,7 +41,7 @@ stages:
           - task: AzureCLI@2
             displayName: 'deploy bicep template'
             inputs:
-              azureSubscription: $(azureSubscription) 
+              azureSubscription: $(AZURE_SUBSCRIPTION) 
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
