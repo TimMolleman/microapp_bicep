@@ -1,0 +1,22 @@
+jobs:
+    - job: ValidateBicepCode
+      displayName: Validate Bicep code
+      steps:
+      - task: AzureCLI@2
+        name: RunPreflightValidation
+        displayName: Run preflight validation
+        inputs:
+          azureSubscription: $(AZURE_SUBSCRIPTION)
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az deployment sub validate \
+              --template-file $(Build.SourcesDirectory)/main.bicep \
+              -l northeurope \
+              --no-prompt \
+              --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) \
+                            azure_client_id=$(AZURE_CLIENT_ID) \
+                            azure_client_secret=$(AZURE_CLIENT_SECRET) \
+                            azure_tenant_id=$(AZURE_TENANT_ID) \
+                            resource_group=$(RESOURCE_GROUP) \
+              --parameters @main.parameters.json
