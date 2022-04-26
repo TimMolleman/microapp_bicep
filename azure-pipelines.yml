@@ -12,12 +12,12 @@ stages:
 # Run linting on the bicep file, warnings are shown but this doesn't stop the pipeline. Errors do
 - stage: Lint
   jobs:
-    - template: templates/lint.yml
+    - template: pipeline-templates/lint.yml
 
 # Run validation on the deployment subscription
 - stage: Validate
   jobs:
-    - template: templates/validate.yml
+    - template: pipeline-templates/validate.yml
 
 # Run what if statement
 - stage: Preview
@@ -47,5 +47,5 @@ stages:
 # Lastly deploy the bicep file code to Azure
 - stage: Deploy
   jobs:
-    - template: templates/deploy.yml
+    - template: pipeline-templates/deploy.yml
   
