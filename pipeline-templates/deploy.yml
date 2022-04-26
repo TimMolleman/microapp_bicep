@@ -14,7 +14,6 @@ jobs:
             scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
-              echo "micoappvault-$(DEPLOY_ENVIRONMENT)" \
               az deployment sub create  \
               --template-file $(Build.SourcesDirectory)/main.bicep \
               -l northeurope \
