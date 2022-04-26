@@ -5,9 +5,6 @@
         "deploy_location": {
             "value": "northeurope"
         },
-        "keyvault_name": {
-            "value": "microappvault"
-        },
         "acr_name": {
             "value": "microcontainerapp"
         }
