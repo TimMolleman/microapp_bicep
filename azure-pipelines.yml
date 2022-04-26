@@ -64,7 +64,7 @@ stages:
               inlineScript: |
                 az deployment sub create  \
                 --name $(Build.BuildNumber) \
-                --template-file main.bicep \
+                --template-file $(Build.SourcesDirectory)/main.bicep \
                 -l northeurope \
                 --no-prompt \
                 --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) \
