@@ -5,6 +5,7 @@ param deploy_location string
 param resource_group string
 param keyvault_name string
 param acr_name string
+param cosmos_db_name string
 
 // Secret parameters
 @secure()
@@ -49,6 +50,7 @@ module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
   scope: rg
   params: {
     keyvault_name: keyvault_name
+    cosmos_db_name: cosmos_db_name
   }
   dependsOn: [
     keyVaultDeploy

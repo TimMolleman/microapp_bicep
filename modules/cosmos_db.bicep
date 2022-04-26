@@ -4,10 +4,11 @@ param database_name string = 'app-db'
 param container_raw_name string = 'raw-data'
 param container_aggregated_name string = 'aggregated-data'
 param keyvault_name string
+param cosmos_db_name string
 
 // Create the Cosmos DB account
 resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
-  name: 'cosmos-db-for-app'
+  name: cosmos_db_name
   location: resource_location
   properties: {
     databaseAccountOfferType: 'Standard'
