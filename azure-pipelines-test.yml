@@ -9,15 +9,8 @@ pool:
     - agent.os -equals Darwin
 
 # Add the actual application code repository so this can be used during deployment  
-resources:
-  repositories:
-  - repository: e
 
 stages:
-- stage: RepositoryCheckout
-  steps:
-    - checkout: self
-
 
 # Run linting on the bicep file, warnings are shown but this doesn't stop the pipeline. Errors do
 - stage: Lint
