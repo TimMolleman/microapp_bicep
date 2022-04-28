@@ -1,8 +1,9 @@
 param resource_location string = resourceGroup().location
 param keyvault_name string
+param service_bus_name string
 
 resource serviceBusApp 'Microsoft.ServiceBus/namespaces@2021-11-01' = {
-  name: 'servicebus-for-app'
+  name: service_bus_name
   location: resource_location
   sku: {
     name: 'Basic'

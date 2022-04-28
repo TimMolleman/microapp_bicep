@@ -5,6 +5,7 @@ param deploy_location string
 param resource_group string
 param keyvault_name string
 param acr_name string
+param service_bus_name string
 param cosmos_db_name string
 
 // Secure parameters
@@ -39,6 +40,7 @@ module serviceBusDeploy 'modules/servicebusdeploy.bicep' = {
   scope: rg
   params: {
     keyvault_name: keyvault_name
+    service_bus_name: service_bus_name
   }
   dependsOn: [
     keyVaultDeploy

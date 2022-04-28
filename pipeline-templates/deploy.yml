@@ -26,4 +26,5 @@ jobs:
                             keyvault_name=micro-appvault-$(DEPLOY_ENVIRONMENT) \
                             cosmos_db_name=cosmos-db-app-$(DEPLOY_ENVIRONMENT) \
                             acr_name=microcontainerapp$(DEPLOY_ENVIRONMENT) \
+                            service_bus_name=service-bus-for-app-$(DEPLOY_ENVIRONMENT) \
               --parameters @main.parameters.json
