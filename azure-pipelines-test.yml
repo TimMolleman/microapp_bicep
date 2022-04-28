@@ -24,7 +24,7 @@ stages:
 # First checkout microapp_bicep and the microapp repository (also list available source files from these checkouts)
 - stage: Checkouts
   jobs:
-    job:
+    - job:
       displayName: Checkout repositories
       steps:
         - checkout: self
