@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "deploy_location": {
-            "value": "northeurope"
+            "value": "westeurope"
         },
         "acr_name": {
             "value": "microcontainerapp"

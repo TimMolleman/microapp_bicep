@@ -16,7 +16,7 @@ jobs:
             inlineScript: |
               az deployment sub create  \
               --template-file $(Build.SourcesDirectory)/main.bicep \
-              -l northeurope \
+              -l westeurope \
               --no-prompt \
               --parameters contributor_object_id=$(CONTRIBUTOR_OBJECT_ID) \
                             azure_client_id=$(AZURE_CLIENT_ID) \
