@@ -76,7 +76,7 @@ module functionAppDeploy 'modules/function_app.bicep' = {
     secret_ref_servicebus_endpoint: serviceBusDeploy.outputs.secret_ref_servicebus_endpoint
     secret_ref_acr_key: containerRegistryDeploy.outputs.secret_ref_acr_key
     secret_ref_cosmos_db_key: 'secret'
-    secret_ref_cosmos_db_endpoint: 'secret'
+    secret_ref_cosmos_db_endpoint: 'scert'
     acr_name: acr_name
     azure_client_id: azure_client_id
     azure_client_secret: azure_client_secret
