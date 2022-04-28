@@ -29,7 +29,7 @@ stages:
       steps:
         - checkout: self
         - checkout: microapp
-        - script: dir $(Build.SourcesDirectory)
+        - script: ls $(Build.SourcesDirectory)
 
 
 # Run linting on the bicep file, warnings are shown but this doesn't stop the pipeline. Errors do
