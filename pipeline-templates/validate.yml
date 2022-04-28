@@ -18,11 +18,5 @@ jobs:
                         azure_client_id=$(AZURE_CLIENT_ID) \
                         azure_client_secret=$(AZURE_CLIENT_SECRET) \
                         azure_tenant_id=$(AZURE_TENANT_ID) \
-                        resource_group=$(RESOURCE_GROUP) \
-                        keyvault_name=microappvault-$(DEPLOY_ENVIRONMENT) \
-                        cosmos_db_name=cosmos-db-app-$(DEPLOY_ENVIRONMENT) \
-                        acr_name=microcontainerapp-$(DEPLOY_ENVIRONMENT) \
-                        service_bus_name=service-bus-for-app-$(DEPLOY_ENVIRONMENT) \
-                        storage_name=spawnerstorage$(DEPLOY_ENVIRONMENT) \
-                        function_name=spanwer$(DEPLOY_ENVIRONMENT) \
+                        resource_group=$(RESOURCE_GROUP)
           --parameters @main.parameters.json
