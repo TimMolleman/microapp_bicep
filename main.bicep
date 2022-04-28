@@ -45,17 +45,17 @@ module serviceBusDeploy 'modules/servicebusdeploy.bicep' = {
   ]
 }
 
-module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
-  name: 'cosmosDbDeploy'
-  scope: rg
-  params: {
-    keyvault_name: keyvault_name
-    cosmos_db_name: cosmos_db_name
-  }
-  dependsOn: [
-    keyVaultDeploy
-  ]
-}
+// module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
+//   name: 'cosmosDbDeploy'
+//   scope: rg
+//   params: {
+//     keyvault_name: keyvault_name
+//     cosmos_db_name: cosmos_db_name
+//   }
+//   dependsOn: [
+//     keyVaultDeploy
+//   ]
+// }
 
 module containerRegistryDeploy 'modules/container_registry.bicep' = {
   name: 'containerRegistryDeploy'
@@ -75,8 +75,8 @@ module functionAppDeploy 'modules/function_app.bicep' = {
   params: {
     secret_ref_servicebus_endpoint: serviceBusDeploy.outputs.secret_ref_servicebus_endpoint
     secret_ref_acr_key: containerRegistryDeploy.outputs.secret_ref_acr_key
-    secret_ref_cosmos_db_key: cosmosDbDeploy.outputs.secret_ref_cosmos_db_key
-    secret_ref_cosmos_db_endpoint: cosmosDbDeploy.outputs.secret_ref_cosmos_db_endpoint
+    secret_ref_cosmos_db_key: 'secret'
+    secret_ref_cosmos_db_endpoint: 'secret'
     acr_name: acr_name
     azure_client_id: azure_client_id
     azure_client_secret: azure_client_secret
