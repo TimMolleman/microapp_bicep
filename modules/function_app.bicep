@@ -1,5 +1,6 @@
 // Global parameters
 param resource_location string = resourceGroup().location
+param storage_name string
 
 // Secure params
 @secure()
@@ -26,7 +27,7 @@ param secret_ref_cosmos_db_endpoint string
 param sku string = 'Standard_LRS'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  name: 'spawnerstorage'
+  name: storage_name
   location: resource_location
   sku: {
     name: sku
