@@ -3,12 +3,15 @@ targetScope = 'subscription'
 // Parameters
 param deploy_location string
 param resource_group string
-param keyvault_name string
-param acr_name string
-param service_bus_name string
-param storage_name string
-param function_name string
-param cosmos_db_name string
+param deploy_environment string
+param keyvault_name string = 'micro-appvault-${deploy_environment}'
+param cosmos_db_name string = 'cosmos-db-app${deploy_environment}'
+param acr_name string = 'microcontainerapp${deploy_environment}'
+param service_bus_name string = 'service-bus-for-app-${deploy_environment}'
+param storage_name string = 'spawnerstorage${deploy_environment}'
+param function_name string = 'spanwer${deploy_environment}'
+
+
 
 // Secure parameters
 @secure()

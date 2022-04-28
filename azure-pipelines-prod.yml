@@ -34,11 +34,11 @@ stages:
 - stage: Lint
   jobs:
     - template: pipeline-templates/lint.yml
-  
-# Run what if statement
-- stage: Preview
-  jobs: 
-  - template: pipeline-templates/preview.yml
+
+# Run validation on the deployment subscription
+- stage: Validate
+  jobs:
+    - template: pipeline-templates/validate.yml
 
 # Lastly deploy the bicep file code to Azure
 - stage: Deploy
