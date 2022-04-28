@@ -9,6 +9,15 @@ pool:
     - agent.os -equals Darwin
 
 # Add the actual application code repository so this can be used during deployment  
+resources:
+  repositories:
+  - repository: microapp
+    type: github
+    name: TimMolleman/microapp
+    ref: master
+    trigger:
+    - master
+
 
 stages:
 
