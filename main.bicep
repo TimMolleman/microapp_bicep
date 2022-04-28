@@ -7,6 +7,7 @@ param keyvault_name string
 param acr_name string
 param service_bus_name string
 param storage_name string
+param function_name string
 param cosmos_db_name string
 
 // Secure parameters
@@ -85,6 +86,7 @@ module functionAppDeploy 'modules/function_app.bicep' = {
     azure_client_secret: azure_client_secret
     azure_tenant_id: azure_tenant_id
     storage_name: storage_name
+    function_name: function_name
   }
   dependsOn: [
     keyVaultDeploy

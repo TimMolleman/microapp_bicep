@@ -28,4 +28,5 @@ jobs:
                             acr_name=microcontainerapp$(DEPLOY_ENVIRONMENT) \
                             service_bus_name=service-bus-for-app-$(DEPLOY_ENVIRONMENT) \
                             storage_name=spawnerstorage$(DEPLOY_ENVIRONMENT) \
+                            function_name=spanwer$(DEPLOY_ENVIRONMENT) \
               --parameters @main.parameters.json

@@ -1,6 +1,5 @@
 // Global parameters
 param resource_location string = resourceGroup().location
-param storage_name string
 
 // Secure params
 @secure()
@@ -12,12 +11,14 @@ param azure_client_secret string
 @secure()
 param azure_tenant_id string
 
-// References to keyvault and the azure container registry name
+// References to keyvault and the azure container registry name + storage name and function name
 param acr_name string
 param secret_ref_servicebus_endpoint string
 param secret_ref_acr_key string
 param secret_ref_cosmos_db_key string 
 param secret_ref_cosmos_db_endpoint string
+param storage_name string
+param function_name string
 
 // Storage account for Azure Function App
 @allowed([
@@ -62,7 +63,7 @@ resource plan 'Microsoft.Web/serverfarms@2021-03-01' = {
 
 // Functionapp configuration
 resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
-  name: 'spawner'
+  name: function_name
   location: resource_location
   kind: 'functionapp,linux'
   properties: {
