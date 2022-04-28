@@ -7,7 +7,7 @@ param keyvault_name string
 param acr_name string
 param cosmos_db_name string
 
-// Secret parameters
+// Secure parameters
 @secure()
 param azure_client_id string
 
