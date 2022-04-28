@@ -4,9 +4,6 @@
     "parameters": {
         "deploy_location": {
             "value": "westeurope"
-        },
-        "acr_name": {
-            "value": "microcontainerapp"
         }
     }
 }
