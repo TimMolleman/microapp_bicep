@@ -20,4 +20,5 @@ jobs:
                         azure_tenant_id=$(AZURE_TENANT_ID) \
                         resource_group=$(RESOURCE_GROUP) \
                         keyvault_name=microappvault-$(DEPLOY_ENVIRONMENT) \
+                        cosmos_db_name=cosmos-db-app-$(DEPLOY_ENVIRONMENT) \
           --parameters @main.parameters.json

@@ -13,6 +13,7 @@ resources:
   repositories:
   - repository: microapp
     type: github
+    endpoint: TimMolleman
     name: TimMolleman/microapp
     ref: master
     trigger:
