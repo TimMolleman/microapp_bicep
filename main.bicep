@@ -52,18 +52,18 @@ module serviceBusDeploy 'modules/servicebusdeploy.bicep' = {
   ]
 }
 
-module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
-  name: 'cosmosDbDeploy'
-  scope: rg
-  params: {
-    keyvault_name: keyvault_name
-    cosmos_db_name: cosmos_db_name
-    resource_location: deploy_location
-  }
-  dependsOn: [
-    keyVaultDeploy
-  ]
-}
+// module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
+//   name: 'cosmosDbDeploy'
+//   scope: rg
+//   params: {
+//     keyvault_name: keyvault_name
+//     cosmos_db_name: cosmos_db_name
+//     resource_location: deploy_location
+//   }
+//   dependsOn: [
+//     keyVaultDeploy
+//   ]
+// }
 
 module containerRegistryDeploy 'modules/container_registry.bicep' = {
   name: 'containerRegistryDeploy'
