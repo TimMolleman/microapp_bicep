@@ -1,4 +1,4 @@
-param resource_location string = resourceGroup().location
+param resource_location string
 param keyvault_name string
 param service_bus_name string
 

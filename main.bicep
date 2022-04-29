@@ -11,8 +11,6 @@ param service_bus_name string = 'service-bus-for-app-${deploy_environment}'
 param storage_name string = 'spawnerstorage${deploy_environment}'
 param function_name string = 'spanwer${deploy_environment}'
 
-
-
 // Secure parameters
 @secure()
 param azure_client_id string
@@ -37,6 +35,7 @@ module keyVaultDeploy 'modules/keyvault.bicep' = {
   params: {
     keyvault_name: keyvault_name
     contributor_object_id: contributor_object_id
+    resource_location: deploy_location
   }
 }
 
@@ -46,23 +45,25 @@ module serviceBusDeploy 'modules/servicebusdeploy.bicep' = {
   params: {
     keyvault_name: keyvault_name
     service_bus_name: service_bus_name
+    resource_location: deploy_location
   }
   dependsOn: [
     keyVaultDeploy
   ]
 }
 
-// module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
-//   name: 'cosmosDbDeploy'
-//   scope: rg
-//   params: {
-//     keyvault_name: keyvault_name
-//     cosmos_db_name: cosmos_db_name
-//   }
-//   dependsOn: [
-//     keyVaultDeploy
-//   ]
-// }
+module cosmosDbDeploy 'modules/cosmos_db.bicep' = {
+  name: 'cosmosDbDeploy'
+  scope: rg
+  params: {
+    keyvault_name: keyvault_name
+    cosmos_db_name: cosmos_db_name
+    resource_location: deploy_location
+  }
+  dependsOn: [
+    keyVaultDeploy
+  ]
+}
 
 module containerRegistryDeploy 'modules/container_registry.bicep' = {
   name: 'containerRegistryDeploy'
@@ -70,6 +71,7 @@ module containerRegistryDeploy 'modules/container_registry.bicep' = {
   params: {
     acr_name: acr_name
     keyvault_name: keyvault_name
+    resource_location: deploy_location
   }
   dependsOn: [
     keyVaultDeploy
@@ -90,6 +92,7 @@ module functionAppDeploy 'modules/function_app.bicep' = {
     azure_tenant_id: azure_tenant_id
     storage_name: storage_name
     function_name: function_name
+    resource_location: deploy_location
   }
   dependsOn: [
     keyVaultDeploy

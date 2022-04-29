@@ -1,5 +1,5 @@
 // Define parameters used in cosmos_db bicep file
-param resource_location string = resourceGroup().location
+param resource_location string
 param database_name string = 'app-db'
 param container_raw_name string = 'raw-data'
 param container_aggregated_name string = 'aggregated-data'

@@ -1,5 +1,5 @@
 // Global parameters
-param resource_location string = resourceGroup().location
+param resource_location string
 
 // Secure params
 @secure()

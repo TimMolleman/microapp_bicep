@@ -1,4 +1,4 @@
-param resource_location string = resourceGroup().location
+param resource_location string
 param keyvault_name string
 
 @secure()
