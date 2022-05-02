@@ -165,7 +165,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
 // Add the managed identity ID to the keyvault
 resource accessPolicyFunctionAppMI 'Microsoft.KeyVault/vaults/accessPolicies@2021-11-01-preview' = {
   name: 'accessPolicyFunctionAppMI'
-  parent: keyvault_name
+  parent: any(keyvault_name)
   properties: {
     accessPolicies: [
       {
