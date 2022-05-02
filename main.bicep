@@ -93,5 +93,9 @@ module functionAppDeploy 'modules/function_app.bicep' = {
     storage_name: storage_name
     function_name: function_name
     resource_location: deploy_location
+    keyvault_name: keyvault_name
   }
+  dependsOn: [
+    keyVaultDeploy
+  ]
 }
