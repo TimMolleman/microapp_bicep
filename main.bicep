@@ -9,7 +9,7 @@ param cosmos_db_name string = 'cosmos-db-app${deploy_environment}'
 param acr_name string = 'microcontainerapp${deploy_environment}'
 param service_bus_name string = 'service-bus-for-app-${deploy_environment}'
 param storage_name string = 'spawnerstorage${deploy_environment}'
-param function_name string = 'spanwer${deploy_environment}'
+param function_name string = 'spawner${deploy_environment}'
 
 // Secure parameters
 @secure()

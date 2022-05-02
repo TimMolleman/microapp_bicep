@@ -66,6 +66,9 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
   name: function_name
   location: resource_location
   kind: 'functionapp,linux'
+  identity: {
+    type: 'SystemAssigned'
+  }
   properties: {
       serverFarmId: plan.id
       siteConfig: {
