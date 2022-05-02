@@ -1,5 +1,6 @@
 // Global parameters
 param resource_location string
+param tenant_id string = subscription().tenantId
 
 // Secure params
 @secure()
@@ -19,6 +20,7 @@ param secret_ref_cosmos_db_key string
 param secret_ref_cosmos_db_endpoint string
 param storage_name string
 param function_name string
+param keyvault_name string
 
 // Storage account for Azure Function App
 @allowed([
@@ -157,5 +159,24 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
         ]
       }
       httpsOnly: true
+  }
+}
+
+// Add the managed identity ID to the keyvault
+resource accessPolicyFunctionAppMI 'Microsoft.KeyVault/vaults/accessPolicies@2021-11-01-preview' = {
+  name: 'accessPolicyFunctionAppMI'
+  parent: keyvault_name
+  properties: {
+    accessPolicies: [
+      {
+        objectId: functionApp.identity.principalId
+        tenantId: tenant_id
+        permissions: {
+          secrets: [
+            'get'
+          ]
+        }
+      }
+    ]
   }
 }

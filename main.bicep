@@ -94,7 +94,4 @@ module functionAppDeploy 'modules/function_app.bicep' = {
     function_name: function_name
     resource_location: deploy_location
   }
-  dependsOn: [
-    keyVaultDeploy
-  ]
 }
