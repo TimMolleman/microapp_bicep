@@ -4,10 +4,7 @@ trigger:
 - none
 
 pool:
-  name: local_pool
-  demands:
-    - agent.os -equals Darwin
-
+  vmImage: ubuntu-latest
 
 stages:
 

@@ -4,9 +4,7 @@ trigger:
 - master
 
 pool:
-  name: local_pool
-  demands:
-    - agent.os -equals Darwin
+  vmImage: ubuntu-latest
 
 stages:
 # Run linting on the bicep file, warnings are shown but this doesn't stop the pipeline. Errors do
